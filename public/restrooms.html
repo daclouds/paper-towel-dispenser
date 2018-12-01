@@ -6,12 +6,7 @@
   </head>
   <body>
     <div id="list">
-      <ul>
-        <li>화장실 #1</li>
-        <li>화장실 #2</li>
-        <li>화장실 #3</li>
-        <li>화장실 #4</li>
-      </ul>
+      <img id="restroom" src="./restroom.jpg" /> 
     </div>
     <script
   src="https://code.jquery.com/jquery-3.3.1.js"
@@ -19,7 +14,7 @@
   crossorigin="anonymous"></script>
     <script>
       $(function() {
-        $('li').click(() => {
+        $('#restroom').click(() => {
           location.href = '/restroom.html';
         });
       });
