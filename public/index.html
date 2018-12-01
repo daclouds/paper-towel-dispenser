@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO</title>
+    <link rel="stylesheet" type="text/css" href="./list.css" />
+  </head>
+  <body>
+    <div id="list">
+      <ul>
+        <li>1층</li>
+        <li>2층</li>
+        <li>3층</li>
+        <li>4층</li>
+        <li>5층</li>
+        <li>6층</li>
+        <li>7층</li>
+        <li>8층</li>
+        <li>9층</li>
+      </ul>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+      $(function() {
+        $('li').click(() => {
+          location.href = '/direction.html';
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+html, body, ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+#list {
+  width: 100%;
+}
+
+#list ul {
+  list-style-type: none;
+}
+
+#list li {
+  padding: 16px;
+}
+#list li:nth-child(odd) { background: #eee; }

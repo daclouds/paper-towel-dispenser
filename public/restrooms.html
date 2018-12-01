@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO</title>
+    <link rel="stylesheet" type="text/css" href="./list.css" />
+  </head>
+  <body>
+    <div id="list">
+      <ul>
+        <li>화장실 #1</li>
+        <li>화장실 #2</li>
+        <li>화장실 #3</li>
+        <li>화장실 #4</li>
+      </ul>
+    </div>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+    <script>
+      $(function() {
+        $('li').click(() => {
+          location.href = '/restroom.html';
+        });
+      });
+    </script>
+  </body>
+</html>
