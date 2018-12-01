@@ -13,5 +13,6 @@ html, body, ul {
 
 #list li {
   padding: 16px;
+  font-size: 36pt;
 }
 #list li:nth-child(odd) { background: #eee; }

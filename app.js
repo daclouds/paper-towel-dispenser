@@ -47,9 +47,9 @@ const updateUse = () => {
     rest = 0;
     job.cancel();
   }
-  if (lastModified.getTime() >= new Date(0).getTime()) {
-    return;
-  }
+  // if (lastModified.getTime() >= new Date(0).getTime()) {
+  //   return;
+  // }
   lastModified = new Date();
   io.emit('message', JSON.stringify({
     use: Math.round(use),
