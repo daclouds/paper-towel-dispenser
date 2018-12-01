@@ -15,14 +15,17 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/refill', function(req, res){
+app.get('/refill', function(req, res) {
+  if (rest !== 0) {
+    return res.send('nok');
+  }
   rest = 100;
   job = schedule.scheduleJob('*/10 * * * * *', updateUse);
   res.send('ok');
 });
 
-io.on('connection', function(socket){
-  socket.on('message', function(msg){
+io.on('connection', function(socket) {
+  socket.on('message', function(msg) {
     console.log(msg);
     io.emit('message', msg);
   });
