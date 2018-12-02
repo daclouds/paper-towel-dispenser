@@ -20,7 +20,7 @@ app.get('/refill', function(req, res) {
     return res.send('nok');
   }
   rest = 100;
-  job = schedule.scheduleJob('*/10 * * * * *', updateUse);
+  job = schedule.scheduleJob('*/10 * * * * *', updateRandomUse);
   res.send('ok');
 });
 
@@ -32,33 +32,34 @@ io.on('connection', function(socket) {
 });
 
 let rest = 100;
-let lastModified = new Date();
+let lastSync;
 let job;
 
 const updateUse = () => {
-  // request('http://192.168.0.105', (error, response, body) => {
-  //   console.log(body);
-  //   const { analog, digital } = JSON.parse(body);
-  //   io.emit('message', JSON.stringify({
-  //     use: analog[0],
-  //     rest: analog[2],
-  //   }));
-  // });
+  return request('http://192.168.0.105', (error, response, body) => {
+    console.log(body);
+    const { RESTROOM: [ lastModified, id, use, acc, usePercent ]} = JSON.parse(body);
+    if (lastSync && lastSync >= lastModified) {
+      return;
+    }
+    io.emit('message', JSON.stringify({
+      use,
+      rest: 100 - usePercent,
+    }));
+  });
+}
+
+const updateRandomUse = () => {
   const use = Math.random() * (10 - 1) + 1;
   rest -= use;
   if (rest <= 0) {
     rest = 0;
     job.cancel();
   }
-  // if (lastModified.getTime() >= new Date(0).getTime()) {
-  //   return;
-  // }
-  lastModified = new Date();
   io.emit('message', JSON.stringify({
     use: Math.round(use),
     rest: Math.round(rest),
   }));
-  
 }
 
 job = schedule.scheduleJob('*/10 * * * * *', updateUse);
